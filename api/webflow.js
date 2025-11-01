@@ -34,8 +34,10 @@ export default async function handler(req, res) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
     });
-    const data = await resp.json();
-    res.status(200).json({ success: true, lacrmResponse: data });
+
+    const dataReturned = await resp.json();
+    console.log("LACRM Response:", JSON.stringify(dataReturned)); // 👈 NEW LINE
+    res.status(200).json({ success: true, lacrmResponse: dataReturned });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Internal Server Error" });
